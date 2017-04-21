@@ -84,7 +84,7 @@ for j in dept_csv:
 
 print ('문제 140  emp와 dept라는 딕셔너리 자료구조를 만드는 스크립트와 중첩 for lopp문을 이용해서 emp와 dept를 조인시켜서 ename과 loc를 출력하시오.')
 
-위의 스크립트
+
 
 for e in emp:  # emp 딕셔너리를 가져온 후
     for d in dept:  #dept테이블에 가서

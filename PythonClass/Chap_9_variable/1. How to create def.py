@@ -69,6 +69,29 @@ print( numerical_diff (function_2, -2) )
 
 
 
-def mibun(f,x):
-    delta = pow(10,-4)    #delta값
-    return ()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def mibun(fucn1,x):
+    delta = 1e-4
+    return ((func1(x + delta) - func1(x - delta)) / 2*delta )
+
+
+
+def func1(x):
+    return 2*pow(x,2)+1      #함수설정
+
+print(mibun(func1,-2))
