@@ -6,11 +6,8 @@ print('###########################추상클래스 예제########################
 추상 클래스 내, 추상메소드와 일반메소드 등 많을 텐데, 그 중 추상메소드는 반드시 가져와서
 오버라이드 해야한다.
 """
-# 파이썬은 추상클래스를 제공하지 않기때문에, import받는다.
 
 from abc import ABCMeta, abstractmethod
-
-
 class animal(object):
     __metaclass__ = ABCMeta  # 추상 클래스로 선언
 
@@ -63,4 +60,3 @@ class caffelatte(beverage):
 
 americano = americano()
 print(americano.cost())
-7
