@@ -278,3 +278,20 @@ result3 = emp[emp['LEARNING_ORDER'].isin (a)]
 print(result3)
 
 
+
+
+print('#########이름 입력하고 함수 실행하면 사원의 직업이 소문자로 출력되게 하라. ########')
+def find_job(name):
+    import pandas as pd
+    emp = pd.DataFrame.from_csv("d:/data/emp.csv")
+    job = emp[['job']][emp['ename'] == name].values[0][0]     # 옆에처럼 변수 선언하고 values뽑으면 array타입으로 나오며, return절에 한번에 써버리면 str형태로 나옴..신기
+    return job
+def lowercase(func):
+    def wrapper1(name):
+        result = func(name)
+        return result.lower()
+    return wrapper1
+
+new_find_job = lowercase(find_job)
+print(new_find_job('SCOTT'))
+print(type(find_job('SCOTT')))

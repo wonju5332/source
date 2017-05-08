@@ -11,17 +11,17 @@ print('예제')
 # print(my_power())
 
 
-def my_power():
-    try:
-        x = input('')
-        y = input('')
-        return int(x)/int(y)
-    except:
-        print('예외발생')
-print(my_power())
-print('예외에 별칭처리 하기')
+# def my_power():
+#     try:
+#         x = input('')
+#         y = input('')
+#         return int(x)/int(y)
+#     except:
+#         print('예외발생')
+# print(my_power())
+# print('예외에 별칭처리 하기')
 
-
+#
 # def my_power():
 #     try:            #문제가 없을 경우 실행할 코드
 #         x = input('분자 숫자를 입력하세요.')
@@ -36,7 +36,7 @@ print('예외에 별칭처리 하기')
 
 
 print('이름을 물어보게 하고, 이름을 입력하면 해당 사원의 월급이 출력되는 함수를 생성하라.')
-
+#
 # import pandas as pd
 # def find_sal():
 #     try:
@@ -48,7 +48,8 @@ print('이름을 물어보게 하고, 이름을 입력하면 해당 사원의 �
 #         return sal
 #     except:
 #         print('해당 사원 없음')
-
+#
+# print(find_sal())
 
 # print(find_sal())
 
@@ -58,14 +59,15 @@ print('문제 182. 직업을 물어보게 하고, 직업을 입력 -> 직업 토
 # def find_sal2():
 #     try:
 #         emp = pd.read_csv("d:/data/emp.csv")
-#         your_job = input('직업을 입력해주세요').upper()
+#         your_job = ''
 #         while your_job == '':
-#             totsal = emp.groupby('job')['sal'].values[0]  #수정
-#         return totsal
+#             your_job = input('직업을 입력해주세요').upper()
+#             sal = emp['sal'][emp['job']==your_job].sum()
+#             return sal
 #     except:
 #         print('해당 직업 없습니다.')
 #
-# find_sal2()
+# print(find_sal2())
 print('문제 183. 이름 물어보고 해당 사원의 월급이 출력되게 하라.  없는 이름 - > 해당사원 없음 출력 있는 이름 - > 월급 추출에 성공했다 출력')
 # import pandas as pd
 # def find_sal3():
@@ -202,4 +204,3 @@ print('191. 이번에는 1번부터 9번 사이외에 숫자를 넣으면 다시
 #                 continue
 #             return num
 
-print(get_number())

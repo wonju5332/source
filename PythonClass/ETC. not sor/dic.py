@@ -97,3 +97,25 @@ for i in range(len(input_list)) :
             result = result + smt_dic[j][0] + ' '
             break
 print(result)
+
+
+
+list = {'이름':'장경원','직위':'팀장','부서':'머신러닝팀'}
+list.get('부서' , 0)  # list에 부서라는 key가 없으면 0 반환
+list.get('관리자' , 0)  # list에 관리자라는 key가 없으면 0 반환
+
+list['부서']
+
+A = {'foo': 10, 'bar' : 20}
+B = {'bar': 30, 'zoo' : 40} #'bar' 값을 주의해서 봐주세요!
+A.update(B)
+A
+{'foo': 10, 'bar' : 30, 'zoo' : 40}
+
+
+A = {'foo': 10, 'bar' : 20}
+B = {'bar' : 30, 'zoo': 40}
+C = dict(A.items() + B.items())
+C
+{'foo' : 10, 'bar': 30, 'zoo': 40}
+
