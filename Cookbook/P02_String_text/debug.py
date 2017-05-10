@@ -1,0 +1,21 @@
+emps = list()
+emps.append( { 'empno':7839,'ename':'KING','job':'PRESIDENT','mgr':0,'hiredate':'81.11.17','sal':5000,'comm':0,'deptno':10 }  )
+emps.append( { 'empno':7698,'ename':'BLAKE','job':'MANAGER','mgr':7839,'hiredate':'81.05.01','sal':2850,'comm':0,'deptno':30} )
+emps.append( { 'empno':7782,'ename':'CLARK','job':'MANAGER','mgr':7839, 'hiredate':'81.05.09','sal':2450 ,'comm':0, 'deptno':10}  )
+emps.append( { 'empno':7566,'ename':'JONES', 'job':'MANAGER','mgr':7839, 'hiredate':'81.04.01','sal':2975,'comm':0 , 'deptno':20}  )
+emps.append( { 'empno':7654,'ename':'MARTIN', 'job':'SALESMAN', 'mgr':7698, 'hiredate':'81.08.10','sal':1250,'comm':1400,'deptno':30}  )
+emps.append( { 'empno':7499,'ename':'ALLEN', 'job':'SALESMAN',  'mgr':7698, 'hiredate':'81.02.11','sal':1600,'comm':300,'deptno':30}  )
+emps.append( { 'empno':7844,'ename':'TURNER', 'job':'SALESMAN', 'mgr':7698, 'hiredate':'81.08.21', 'sal':1500,'comm':0,'deptno':30}  )
+emps.append( { 'empno':7900,'ename':'JAMES', 'job':'CLERK',   'mgr':7698, 'hiredate':'81.12.11','sal':950,'comm':0,'deptno':30}  )
+emps.append( { 'empno':7521,'ename':'WARD', 'job':'SALESMAN',  'mgr':7698, 'hiredate':'81.02.23','sal':1250,'comm':500,'deptno':30}  )
+emps.append( { 'empno':7902,'ename':'FORD',  'job':'ANALYST',  'mgr':7566, 'hiredate':'81.12.11', 'sal':3000,'comm':0,'deptno':20}  )
+emps.append( { 'empno':7369,'ename':'SMITH', 'job':'CLERK', 'mgr':7902, 'hiredate':'80.12.09', 'sal':800,'comm':0, 'deptno':20}  )
+emps.append( { 'empno':7788,'ename':'SCOTT',  'job':'ANALYST', 'mgr':7566, 'hiredate':'82.12.22', 'sal':3000,'comm':0,'deptno':20}  )
+emps.append( { 'empno':7876,'ename':'ADAMS', 'job':'CLERK', 'mgr':7788, 'hiredate':'83.01.23',  'sal':1100,'comm':0,'deptno':20}  )
+emps.append( { 'empno':7934,'ename':'MILLER', 'job':'CLERK', 'mgr':7782, 'hiredate':'82.01.12 ','sal':1300,'comm':0,'deptno':10}  )
+
+import re
+emppat = re.compile(r'(\d+).(\d+).(\d+)')
+for i in emps:
+    emp_substit = emppat.sub(r'\1/\2/\3',i['hiredate'],2)
+    print(emp_substit)
