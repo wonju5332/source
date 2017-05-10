@@ -20,7 +20,6 @@ def printboard(state):
 # 빈 판
 def emptystate():
     return [[EMPTY, EMPTY, EMPTY], [EMPTY, EMPTY, EMPTY], [EMPTY, EMPTY, EMPTY]]
-
 def gameover(state): # 1 2 3
     # 가로/세로로 한 줄 완성한 플레이어가 있다면 그 플레이어 리턴
     for i in range(3):
