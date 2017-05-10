@@ -242,3 +242,5 @@ print('accents removed:', c)
 
 d = b.encode('ascii','ignore').decode('ascii')
 print('accents removed via I/O:', d)
+aa
+aa
