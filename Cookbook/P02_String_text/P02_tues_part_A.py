@@ -130,3 +130,73 @@ for tok in generate_tokens(master_pat, 'foo = 42'):
 
 print('########################################## 2.19 간단한 재귀 파서 작성#####################################')
 
+
+
+
+
+
+
+
+"""
+▶ 2.20 바이트 문자열에 텍스트 연산 수행 ◀ 
+♣  문제 : 바이트 문자열에 일반적인 텍스트 연산( 잘라내기, 검색, 치환 등) 을 수행하고 싶다. 
+↘  해결 : 바이트 문자열도 텍스트 문자열와 마찬가지로 대부분의 연산을 내장하고 있다.
+         바이트 문자열은 패턴 매칭에 정규 표현식을 적용할 수 있다. (패턴 자체도 바이트로 나타내야 함..)
+ """
+
+
+print('########################################## 2.20 바이트 문자열에 텍스트 연산 수행#####################################')
+
+
+text = b'hello world'
+print(text[0:3],text[5:9])
+
+a = text.startswith(b'hello')  #
+print(a)
+
+b = text.split()
+print(b)
+
+c = text.replace(b'hello', b'Hello Cruel')
+print(c)
+
+
+
+print('##############################바이트 문자열 패턴매칭 X 정규 표현식 ########################')
+
+
+data = b'foo:bar,spam'
+import re
+#re.split('[:,]',data)         # can't use a string pattern on a bytes
+
+d = re.split(b'[:,]',data)
+print(d)
+
+print('■□■토론■□■')
+"""
+텍스트문자열과는 차이점
+    1. 바이트 문자열에 인덱스를 사용하면 개별 문자가 아닌, 정수를 가리킨다.
+    2. 바이트 문자열은 보기 좋은 표현식을 지원하지 않으며, 텍스트 문자열로 변환해야만이 깔끔함
+    3. 바이트 문자열은 서식화(formatting)을 지원하지 않는다.     (하고 싶으면 텍스트 문자열과 인코딩을 사용해야 함)
+    4. 바이트 문자열을 사용하면, 특정 연산의 문법에 영향을 주기도 한다. 
+        ex)파일이름을 바이트 문자열로 제공하면, 인코딩/디코딩을 사용할 수 없다.
+    
+"""
+b = b'hello world'
+print(b[0])  #104
+
+
+s = b'Hello World'
+print(s)
+print(s.decode('ascii'))
+
+
+d = '{:10s} {:10d} {:10.2f}'.format('ACME', 100, 490.1).encode('ascii')
+print(d)
+
+
+with open('jalape\xf1o.txt', 'w' ) as f:
+    f.write('spicy')
+
+import os
+print(os.listdir('.'))
