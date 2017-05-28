@@ -26,8 +26,8 @@ class theCheatCrawler:
 
     #첫 게시글 들어간 후, 아래의 루프페이지를 먼저 순회하여 dict형태의 detail 리턴   #[{goods:컴퓨터,피해액:30000원},{..}, ...{..} ]
     def loop_article(self,article_url):
-        dic = dict()
-        detail = list()
+        self.detail_list = list()
+        detail_tuple = namedtuple('detail_info', ['GOODS', 'DAMAGE_MONEY','DAMAGE_SITE','SUSPECT_BANK'])
         detail_url = article_url[0]  #첫페이지-첫게시글에서 출력되는곳에서만 html을 불러옴
         self.driver.get(self.ARTICLE_URL.format(detail_url))
         html = self.driver.page_source
@@ -41,17 +41,15 @@ class theCheatCrawler:
             '''
             아래 dic을 defaultdict으로 바꿔야함. NaN값이 있는 키를 호출할 수 없는 상태임.
             '''
-            dic['goods']=goods
-            dic['damage_moneny']=damage_money
-            dic['damage_site']=damage_site
-            dic['suspect_bank']=suspect_bank
-            detail.append(dic)
-        return detail         #{'goods':'컴퓨터','damage_money':'300,00원','damage_site':'http://cafe.com','suspect_bank':'농협...'}
+            detail = detail_tuple(goods,damage_money,damage_site,suspect_bank)
+            self.detail_list.append(detail)
+        print(self.detail_list[0])
+        return self.detail_list
 
 
     # 각 게시글의 url을 순회하는 곳  #[조회수, 작성시간, 사건피해내용]
     def fetch_list_url(self,article_url):
-        info_list = []
+        self.info_list = []
         article_tuple = namedtuple('Article_info',['HIT_CNT','UPLOAD_DATE'])
         for url in article_url:
             self.driver.get(self.ARTICLE_URL.format(url))  # 게시글에 접속
@@ -61,16 +59,15 @@ class theCheatCrawler:
             upload_date= soup.select('div.userInfo > div.userInfoHead > span')[0].text #ok           작성시간
             # content_text = soup.find('div',id='vContent').get_text(strip=True) #ok                   피해사례 문장
             info = article_tuple(hit_cnt,upload_date) #Article_info(HIT_CNT='조회 7', UPLOAD_DATE='2017.05.27 19:42:56')
-            info_list.append(info)
-        return info_list
+            self.info_list.append(info)
+        print(self.info_list[0])
+        return self.info_list
 
     def info_to_detail(self,detail,info):
-        print('여기 시작했어용')
-
-        if len(detail) == len(info):
+        if len(detail) == len(info):          # key-value 세팅 전에 서로의 개수가 같아야 오류가 나지 않기 때문
             for idx in range(len(detail)-1): #0-58 총 59번
-                self.data_list[info[idx]].append(detail[idx])
-                print(self.data_list)
+                self.data_list[info[idx]].append(detail[idx])   #data_list 는 클래스 __init__에 선언한 디폴트딕트이다.
+        print(self.data_list[0])
         return self.data_list
 
     def play_crawling(self):
@@ -88,16 +85,17 @@ class theCheatCrawler:
             self.data_to_file()
     #데이터 저장 함수
     def data_to_file(self):
-        with open(theCheatCrawler.FILE_PATH + "kma_crawled.txt", "a", encoding="utf-8") as file:
-            file.write('======================================================\n')
-            for key, value in self.data_list.items():
-                file.write('>> ' + key[0] + ', ' + key[1] + '\n')
-                print(value)
-                for idx in value:
-                    file.write(idx)
+        print(self.data_list)
 
-            file.write('======================================================\n\n')
-            file.close()
+        # with open(theCheatCrawler.FILE_PATH + "kma_crawled.txt", "a", encoding="utf-8") as file:
+        #     file.write('======================================================\n')
+        #     for key, value in self.data_list.items():
+        #         file.write('>> ' + key[0] + ', ' + key[1] + '\n')
+        #         for idx in value:
+        #             file.write(idx)
+        #
+        #     file.write('======================================================\n\n')
+        #     file.close()
 
 
 crawler = theCheatCrawler(2)  #일단 매개변수는 페이지수만큼
